@@ -1,3 +1,5 @@
+// userMOdel.js file is used t define the user model using Sequelize ORM.
+
 const sequelize = require("../config/database");
 const { Sequelize, DataTypes } = require('sequelize');
 

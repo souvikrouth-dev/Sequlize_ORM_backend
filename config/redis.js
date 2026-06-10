@@ -1,3 +1,4 @@
+//this file is used to connect to the Redis database using the redis client.
 const redis =  require('redis');
 
 
