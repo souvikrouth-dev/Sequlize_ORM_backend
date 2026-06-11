@@ -149,3 +149,33 @@ userRouter.delete("/users",userAuth, async (req,res)=>{
 
 module.exports = userRouter;
 
+// select * from "People";
+
+// CREATE TABLE deleted_users_log (
+//   id SERIAL PRIMARY KEY,
+//   user_id INT,
+//   email VARCHAR,
+//   deleted_at TIMESTAMP
+// );
+
+// CREATE OR REPLACE FUNCTION log_deleted_user()
+// RETURNS TRIGGER AS $$
+// BEGIN
+//   INSERT INTO deleted_users_log(user_id, email, deleted_at)
+//   VALUES (OLD.id, OLD.email, NOW());
+//   RETURN OLD;
+// END;
+// $$ LANGUAGE plpgsql;
+
+
+// CREATE TRIGGER after_people_delete
+// AFTER DELETE ON "People"
+// FOR EACH ROW
+// EXECUTE FUNCTION log_deleted_user();
+
+
+// SELECT table_name FROM information_schema.tables
+// WHERE table_schema = 'public';
+
+
+// SELECT * FROM deleted_users_log;

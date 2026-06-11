@@ -11,6 +11,7 @@ const userAuth = require("./middleware/userAuth")
 const authRouter = require("./routes/auth")
 const userRouter = require("./routes/users")
 const radisClient = require("./config/redis");
+const rateLimiter = require("./middleware/rateLimiter");
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan')
@@ -27,12 +28,11 @@ app.use(helmet());
 // Logging
 app.use(morgan('dev'));
 
+app.use(rateLimiter);
 
 //Express Router 
 app.use("/",authRouter);
 app.use("/",userRouter);
-
-
 
 const initilizeConnection = async ()=>{
 
@@ -57,4 +57,4 @@ const initilizeConnection = async ()=>{
     }
 }
 
-initilizeConnection();
+initilizeConnection(); 
